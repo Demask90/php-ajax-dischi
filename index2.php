@@ -9,6 +9,7 @@ include __DIR__ . '/utilities/database.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.23.0/axios.min.js" integrity="sha512-Idr7xVNnMWCsgBQscTSCivBNWWH30oo/tzYORviOCrLKmBaRxRflm2miNhTFJNVmXvCtzgms5nlJF4az2hiGnA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -33,26 +34,25 @@ include __DIR__ . '/utilities/database.php';
         </header>
         <main class="main">
             <div class="container">
-                <?php
-                foreach($albums as $song){
-                ?>    
-                    <div class='card'>
+                <div class='card' v-for="(album, index) in albums" :key="index">
                         <div class='cardImg'>
-                            <img src=<?php echo $song['poster']?> alt='poster <?php echo $song['title']?>'>
+                            <img :src='album.poster' :alt='album.title'>
                         </div>
                         <div class='cardInfo'>
-                            <div class='cardTitle'><h3><?php echo strtoupper($song['title'])?></h3></div>
+                            <div class='cardTitle'>
+                                <h3>{{album.author}}</h3>
+                            </div>
                             <div class='cardAuthor'>
-                                <h4><?php echo $song['author']?></h4>
-                                <h4><?php echo $song['year']?></h4>
+                                <h4>{{album.genre}}</h4>
+                                <h4>{{album.year}}</h4>
                             </div>
                         </div>
                     </div>
-                <?php    
-                }
-                ?>
+                </div>
             </div>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
